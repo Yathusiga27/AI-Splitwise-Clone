@@ -18,18 +18,18 @@ export default defineSchema({
     description: v.string(),
     amount: v.number(),
     category: v.optional(v.string()),
-    date: v.number(), 
+    date: v.number(), // timestamp
     paidByUserId: v.id("users"), // Reference to users table
     splitType: v.string(), // "equal", "percentage", "exact"
     splits: v.array(
       v.object({
-        userId: v.id("users"), 
-        amount: v.number(), 
+        userId: v.id("users"), // Reference to users table
+        amount: v.number(), // amount owed by this user
         paid: v.boolean(),
       })
     ),
-    groupId: v.optional(v.id("groups")), 
-    createdBy: v.id("users"), 
+    groupId: v.optional(v.id("groups")), // null for one-on-one expenses
+    createdBy: v.id("users"), // Reference to users table
   })
     .index("by_group", ["groupId"])
     .index("by_user_and_group", ["paidByUserId", "groupId"])
@@ -39,12 +39,12 @@ export default defineSchema({
   settlements: defineTable({
     amount: v.number(),
     note: v.optional(v.string()),
-    date: v.number(), 
-    paidByUserId: v.id("users"), 
-    receivedByUserId: v.id("users"), 
-    groupId: v.optional(v.id("groups")), 
-    relatedExpenseIds: v.optional(v.array(v.id("expenses"))), 
-    createdBy: v.id("users"), 
+    date: v.number(), // timestamp
+    paidByUserId: v.id("users"), // Reference to users table
+    receivedByUserId: v.id("users"), // Reference to users table
+    groupId: v.optional(v.id("groups")), // null for one-on-one settlements
+    relatedExpenseIds: v.optional(v.array(v.id("expenses"))), // Which expenses this settlement covers
+    createdBy: v.id("users"), // Reference to users table
   })
     .index("by_group", ["groupId"])
     .index("by_user_and_group", ["paidByUserId", "groupId"])
@@ -55,11 +55,11 @@ export default defineSchema({
   groups: defineTable({
     name: v.string(),
     description: v.optional(v.string()),
-    createdBy: v.id("users"), 
+    createdBy: v.id("users"), // Reference to users table
     members: v.array(
       v.object({
-        userId: v.id("users"), 
-        role: v.string(),
+        userId: v.id("users"), // Reference to users table
+        role: v.string(), // "admin" or "member"
         joinedAt: v.number(),
       })
     ),
