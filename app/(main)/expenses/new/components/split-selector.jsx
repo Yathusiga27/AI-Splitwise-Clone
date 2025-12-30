@@ -168,7 +168,7 @@ export function SplitSelector({
           key={split.userId}
           className="flex items-center justify-between gap-4"
         >
-          <div className="flex items-center gap-2 min-w-[120px]">
+          <div className="flex items-center gap-2 min-w-30">
             <Avatar className="h-7 w-7">
               <AvatarImage src={split.imageUrl} />
               <AvatarFallback>{split.name?.charAt(0) || "?"}</AvatarFallback>
@@ -196,7 +196,7 @@ export function SplitSelector({
                 }
                 className="flex-1"
               />
-              <div className="flex gap-1 items-center min-w-[100px]">
+              <div className="flex gap-1 items-center min-w-25">
                 <Input
                   type="number"
                   min="0"
