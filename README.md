@@ -26,7 +26,4 @@ You can check out [the Next.js GitHub repository](https://github.com/vercel/next
 
 Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
 
-## Deployed URLs
-Backend :- https://forever-backend-three-lake.vercel.app/
-Frontend :- https://forever-frontend-zeta-six.vercel.app/
-Admin :- https://forever-admin-delta-nine.vercel.app/
+
